@@ -9,15 +9,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot(),
     ToolsModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost', //process.env.DATABASE_HOST,
-      port: 5432, //parseInt(process.env.DATABASE_PORT),
-      username: 'tuchtenhagen', //process.env.DATABASE_USER,
-      password: 'password', //process.env.DATABASE_PASS,
-      database: 'bossa-box', //process.env.DATABASE_NAME,
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT),
+      username: process.env.DB_USER,
+      password: process.env.DB_PASS,
+      database: process.env.DB_NAME,
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
